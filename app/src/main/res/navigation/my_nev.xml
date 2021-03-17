@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nev"
+    app:startDestination="@id/recipesFragment">
+
+    <fragment
+        android:id="@+id/recipesFragment"
+        android:name="com.harpreet.recipe.ui.fragments.main_fragments.RecipesFragment"
+        android:label="Recipes"
+        tools:layout="@layout/fragment_recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet"
+            app:launchSingleTop="true" />
+        <argument
+            android:name="fromBottomNevigation"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeSearchFragment"
+            app:destination="@id/recipeSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.harpreet.recipe.ui.fragments.main_fragments.FavoriteFragment"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/jokeFragment"
+        android:name="com.harpreet.recipe.ui.fragments.main_fragments.JokeFragment"
+        android:label="Joke"
+        tools:layout="@layout/fragment_joke" />
+    <dialog
+        android:id="@+id/recipesBottomSheet"
+        android:name="com.harpreet.recipe.ui.fragments.main_fragments.RecipesBottomSheet"
+        android:label="recipes_bottom_sheet"
+        tools:layout="@layout/recipes_bottom_sheet" >
+        <action
+            android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment"
+            app:popUpTo="@id/my_nev" />
+    </dialog>
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="com.harpreet.recipe.ui.DetailActivity"
+        android:label="Details"
+        tools:layout="@layout/activity_detail" >
+
+        <argument
+            android:name="result"
+            app:argType="com.harpreet.recipe.models.Result" />
+    </activity>
+    <fragment
+        android:id="@+id/recipeSearchFragment"
+        android:name="com.harpreet.recipe.ui.fragments.main_fragments.RecipeSearchFragment"
+        android:label="fragment_recipe_search"
+        tools:layout="@layout/fragment_recipe_search" >
+        <action
+            android:id="@+id/action_recipeSearchFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+        <action
+            android:id="@+id/action_recipeSearchFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+</navigation>
